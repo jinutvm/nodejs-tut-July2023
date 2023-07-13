@@ -149,6 +149,7 @@
 
 // Using Route Params. Those params will be available in req.params. 
 // if link is '/api/products/1' req.params value will be {productId : '1'}
+// Please note similar to req.params, there is req.query and req.body
 
 // app.get('/api/products/:productId',(req,res)=>{
 //     const newProducts = products.find((product)=>{return product.id === req.params.productId})
@@ -246,12 +247,13 @@
 
 // Trying app.use 
 
-const express = require('express');
-const app = express();
-const port = 4000;
-const logger = require('./logger')
-const authorize = require('./6.Materials/authorize')
-const morgan = require('morgan')
+// const express = require('express');
+// const app = express();
+// const port = 4000;
+// const logger = require('./logger')
+// const authorize = require('./6.Materials/authorize')
+// const morgan = require('morgan');
+// const { Router } = require('express');
 // Logger middleware will be used in all routes below. its better app.use is above all routes, otherwise app.use will be applicable to only routes below 
 // app.use(logger)
 // Logger middleware will be used only for routes starting with /api. 
@@ -266,27 +268,51 @@ const morgan = require('morgan')
 // own - authorize, logger
 // express provided - express.static 
 // third party - morgan. Install morgan
-app.use(morgan('tiny'))
+// app.use(morgan('tiny'))
+
+// app.get('/',(req,res)=>{
+//     res.send('Home')
+// })
+
+// app.get('/about',(req,res)=>{
+//     res.send('About')
+// })
+
+// app.get('/api/products',(req,res)=>{
+//     res.send('products')
+// })
+
+// app.get('/api/items',(req,res)=>{
+//     res.send('items')
+// })
+
+// // to add multiple middleware in the route
+// app.get('/api/jobs',[logger,authorize],(req,res)=>{
+//     res.send('jobs')
+// })
+
+// app.listen(port,()=>console.log(`Server is listening to ${port}...`))
+
+
+
+// Router options 
+// Option 1 - define each of the routes as below
+// router.get('/',getProducts)
+// router.post('/',createProducts)
+// router.put('/:id',updateProducts)
+// router.delete('/:id',deleteProducts)
+// Option 2 - another way to group all common routes together. 
+// router.route('/').get(getProducts).post(createProducts)
+// router.route('/:id').put(updateProducts).delete(deleteProducts)
+
+// middleware - express.json - Will parse json inputs and property can be used without destructing
+const express = require('express');
+const app = express();
 
 app.get('/',(req,res)=>{
-    res.send('Home')
+    res.send('Hellow World')
 })
 
-app.get('/about',(req,res)=>{
-    res.send('About')
-})
 
-app.get('/api/products',(req,res)=>{
-    res.send('products')
-})
+app.listen(4000,()=>console.log('Server is runing...'))
 
-app.get('/api/items',(req,res)=>{
-    res.send('items')
-})
-
-// to add multiple middleware in the route
-app.get('/api/jobs',[logger,authorize],(req,res)=>{
-    res.send('jobs')
-})
-
-app.listen(port,()=>console.log(`Server is listening to ${port}...`))

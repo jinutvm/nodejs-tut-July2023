@@ -62,4 +62,11 @@ const products = [
   }
 ]
 
-module.exports = {products}
+const people = [
+    {name : 'Jinu', age: 42, company: 'TCS', salary: 100},
+    {name : 'Prasi', age: 38, company: 'Studio', salary: 90},
+    {name : 'Niranjan', age: 7, company: 'Naipunya', salary:20},
+    {name : 'Neeraj', age: 7, company: 'Naipunya',salary:30}
+]
+
+module.exports = {products, people}

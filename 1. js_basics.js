@@ -576,29 +576,29 @@
 // }
 // printAllLines()
 
-// const users = [
-//     {id:1, name: 'Jinu'},
-//     {id:2, name: 'Prasee'},
-//     {id:3, name: 'Niranjan'},
-//     {id:4, name: 'Neeraj'}
-// ];
+const users = [
+    {id:1, name: 'Jinu'},
+    {id:2, name: 'Prasee'},
+    {id:3, name: 'Niranjan'},
+    {id:4, name: 'Neeraj'}
+];
 
-// const articles = [
-//     {userId: 1, articles:[1,2,3]},
-//     {userId: 2, articles:[4,5]},
-//     {userId: 3, articles:[6,7,8,9]}
-// ];
+const articles = [
+    {userId: 1, articles:[1,2,3]},
+    {userId: 2, articles:[4,5]},
+    {userId: 3, articles:[6,7,8,9]}
+];
 
-// const getUser= (name)=>{
-//     return new Promise((resolve,reject)=>{
-//         const user= users.find((user)=> user.name===name);
-//         if(user){
-//             return resolve(user);
-//         }else{
-//             return reject('The user doesnt exist');
-//         }
-//     })
-// };
+const getUserID= (name)=>{
+    return new Promise((resolve,reject)=>{
+        const user= users.find((user)=> user.name===name);
+        if(user){
+            return resolve(user);
+        }else{
+            return reject('The user doesnt exist');
+        }
+    })
+};
 
 // const getArticles = (userID)=>{
 //     return new Promise((resolve,reject)=>{
@@ -611,16 +611,16 @@
 //     })
 // }
 
-// const getUserArticles = async (name)=>{
-//     try {
-//         const userSearchResult = await getUser(name);
-//         console.log(userSearchResult)
-//         const userArticleResult = await getArticles(userSearchResult.id)
-//         console.log(userArticleResult)
-//     } catch (error) {
-//         console.log(error);
-//     }    
-// }
+const getUserArticles = async (name)=>{
+    try {
+        const userSearchResult = await getUserID(name);
+        console.log(userSearchResult)
+        // const userArticleResult = await getArticles(userSearchResult.id)
+        // console.log(userArticleResult)
+    } catch (error) {
+        console.log(error);
+    }    
+}
 
-// getUserArticles('Jinu')
+getUserArticles('Jinu')
 
