@@ -6,20 +6,39 @@ const connectDB = require('./db/connect');
 //add routes modules and get the routes as tasks
 const tasks = require('./routes/tasks');
 require('dotenv').config()
+const notFound = require('./middleware/not-found')
+// Include error handler middleware
+const errorHandlerMiddleware = require('./middleware/error-handler')
 
 //middleware 
 //express.json - will parse the json inputs and get details from req.body
 app.use(express.json())
 
 
+
 app.get('/hello',(req,res)=>{
-    res.send('Task manager app')
+    res.send('Task manager app1')
 })
+
+// app.get('/hello',(req,res)=>{
+//     res.send('Task manager app')
+// })
 
 //when this base url is hit, go to the tasks route for next steps. 
 
 app.use('/api/v1/tasks',tasks)
 
+//Instead of app.all using app.use for route not found 
+
+// app.all('*',(req,res)=>{
+//     res.status(404).send('Route not found')
+// })
+// Once the control comes to this app.use means no route found on top to perform and if this is executed means it will be not found. 
+//Should be at the bottom. 
+app.use(notFound)
+
+// INclude the middleware 
+app.use(errorHandlerMiddleware)
 // app.get('/api/v1/tasks')-  Get all tasks
 // app.post('/api/v1/tasks') - Create new tasks 
 // app.get('/ap1/v1/tasks/:id') - get single tasks

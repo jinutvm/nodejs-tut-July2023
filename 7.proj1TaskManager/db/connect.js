@@ -1,7 +1,7 @@
 const mongoose=require('mongoose')
 
 //
-// const connectionString = 'mongodb+srv://jinu:1234@cluster0.mzttwmi.mongodb.net/07-TASK-MANAGER?retryWrites=true&w=majority'
+const connectionString = 'mongodb+srv://jinu:1234@cluster0.mzttwmi.mongodb.net/07-TASK-MANAGER?retryWrites=true&w=majority'
 
 //once the instance is available, method name is connect
 // this will return a promise, then and catch 

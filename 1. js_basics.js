@@ -576,29 +576,29 @@
 // }
 // printAllLines()
 
-const users = [
-    {id:1, name: 'Jinu'},
-    {id:2, name: 'Prasee'},
-    {id:3, name: 'Niranjan'},
-    {id:4, name: 'Neeraj'}
-];
+// const users = [
+//     {id:1, name: 'Jinu'},
+//     {id:2, name: 'Prasee'},
+//     {id:3, name: 'Niranjan'},
+//     {id:4, name: 'Neeraj'}
+// ];
 
-const articles = [
-    {userId: 1, articles:[1,2,3]},
-    {userId: 2, articles:[4,5]},
-    {userId: 3, articles:[6,7,8,9]}
-];
+// const articles = [
+//     {userId: 1, articles:[1,2,3]},
+//     {userId: 2, articles:[4,5]},
+//     {userId: 3, articles:[6,7,8,9]}
+// ];
 
-const getUserID= (name)=>{
-    return new Promise((resolve,reject)=>{
-        const user= users.find((user)=> user.name===name);
-        if(user){
-            return resolve(user);
-        }else{
-            return reject('The user doesnt exist');
-        }
-    })
-};
+// const getUserID= (name)=>{
+//     return new Promise((resolve,reject)=>{
+//         const user= users.find((user)=> user.name===name);
+//         if(user){
+//             return resolve(user);
+//         }else{
+//             return reject('The user doesnt exist');
+//         }
+//     })
+// };
 
 // const getArticles = (userID)=>{
 //     return new Promise((resolve,reject)=>{
@@ -611,16 +611,100 @@ const getUserID= (name)=>{
 //     })
 // }
 
-const getUserArticles = async (name)=>{
-    try {
-        const userSearchResult = await getUserID(name);
-        console.log(userSearchResult)
-        // const userArticleResult = await getArticles(userSearchResult.id)
-        // console.log(userArticleResult)
-    } catch (error) {
-        console.log(error);
-    }    
+// const getUserArticles = async (name)=>{
+//     try {
+//         const userSearchResult = await getUserID(name);
+//         console.log(userSearchResult)
+//         // const userArticleResult = await getArticles(userSearchResult.id)
+//         // console.log(userArticleResult)
+//     } catch (error) {
+//         console.log(error);
+//     }    
+// }
+
+// getUserArticles('Jinu')
+
+// Advanced Javascript concepts 
+const express = require('express')
+const app = express()
+
+
+// Class Inheritance
+
+// const me = {
+//     talk(){
+//         return 'Talking'
+//     }
+// }
+
+// console.log('Me ' + me.talk())
+
+// const you = {
+//     talk(){
+//         return 'Talking'
+//     }
+// }
+// console.log('You '+ you.talk())
+
+// Instead of duplicating the code use class inheritance
+
+// class Person {
+//     talk(){
+//         return 'Talking'
+//     }
+// }
+//Create a new instance of person and assign to Me. All properties and methods will be available with "me" as well. 
+// const me = new Person();
+// const you= new Person();
+
+// console.log(me.talk()) // Talk can be used in me
+// console.log(you.talk()) 
+// console.log(me) // Will have a prototype inside. 
+
+// me.age= 12; // will be a property under me, but you will not have. Anything under the proto will be changed every place 
+
+
+
+// me._proto_.talk = function (){
+//     return 'New Improved Talking'
+// }
+
+// console.log(me.talk()) // This will change both me and you 
+// console.log(you.talk()) 
+
+// Try below in the browser console 
+
+class Person {
+    talk () {
+        return 'Talking'
+    }
 }
 
-getUserArticles('Jinu')
+const me = new Person();
+const you= new Person();
+
+console.log(me.talk())
+console.log(you.talk())
+
+me._proto_.talk = function () {
+    return 'New improved Talking'
+}
+
+// Both the me and you talk will change 
+// Person.prototype.Talk will also have the new function
+console.log(me.talk())
+console.log(you.talk())
+console.log(Person.prototype.talk())
+
+class SuperHuman extends Person {
+    fly(){
+        return 'Flying'
+    }
+}
+
+const newMe = new SuperHuman();
+const newYou= new SuperHuman();
+
+console.log(newMe.talk())
+console.log(newMe.fly())
 
